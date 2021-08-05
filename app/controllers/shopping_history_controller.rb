@@ -1,2 +1,0 @@
-class ShoppingHistoryController < ApplicationController
-end
