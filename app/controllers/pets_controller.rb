@@ -1,8 +1,10 @@
 class PetsController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
     pet = Pet.new(
+      user_id: current_user.id,
       name: params[:name],
-      user_id: params[:user_id],
       picture: params[:picture]
     )
     if pet.save

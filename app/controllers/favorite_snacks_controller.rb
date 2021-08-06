@@ -1,4 +1,6 @@
 class FavoriteSnacksController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
     favoritesnack = FavoriteSnack.new(
       puppy_id: params[:puppy_id],

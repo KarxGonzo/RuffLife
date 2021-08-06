@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
     item = Item.new(
+      user_id: current_user.id,
       name: params[:name],
       picture: params[:picture],
       upc: params[:upc],

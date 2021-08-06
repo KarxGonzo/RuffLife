@@ -1,7 +1,9 @@
 class ShoppingHistoriesController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
     shoppinghistory = ShoppingHistory.new(
-      user_id: params[:user_id],
+      user_id: current_user.id,
       date: params[:date],
       item_id: params[:item_id],
       quantity: params[:quantity]
