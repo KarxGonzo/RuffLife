@@ -10,6 +10,14 @@ Rails.application.routes.draw do
 
 
   post "/shopping_histories" => "shopping_histories#create"
+  get "/shopping_histories" => "shopping_histories#index"
+  get "/shopping_histories/:id" => "shopping_histories#show"
+  
   post "/items" => "items#create"
+  get "/items" => "items#index"
+  get "/items/:id" => "items#show"
+
+  get "/favorite_snacks" => "favorite_snacks#index"
   post "/favorite_snacks" => "favorite_snacks#create"
+
 end

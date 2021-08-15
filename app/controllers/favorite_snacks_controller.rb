@@ -1,5 +1,10 @@
 class FavoriteSnacksController < ApplicationController
-  before_action :authenticate_user, only: [:create]
+  before_action :authenticate_user, only: [:create, :index ]
+
+  def index
+    favoritesnack = FavoriteSnack.all
+    render json: favoritesnack.as_json
+  end
 
   def create
     favoritesnack = FavoriteSnack.new(
