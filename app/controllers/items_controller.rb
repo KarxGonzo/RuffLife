@@ -7,8 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    response =  HTTP.get("https://api.upcitemdb.com/prod/trial/lookup?upc=0885909950805")
-    p response.parse(:json)
+    response =  HTTP.get("https://api.upcitemdb.com/prod/trial/lookup?upc=#{params[:search]}")
     item = Item.new(
       user_id: current_user.id,
       name: response.parse(:json)['items'][0]['title'],
