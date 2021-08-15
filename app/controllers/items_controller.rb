@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
       user_id: current_user.id,
       name: response.parse(:json)['items'][0]['title'],
       picture: response.parse(:json)['items'][0]['images'],
-      upc: params[:upc],
+      upc: response.parse(:json)['items'][0]['upc'],
       price: response.parse(:json)['items'][0]['offers'][0]['price'],
       brand: response.parse(:json)['items'][0]['brand'],
       merchant: response.parse(:json)['items'][0]['offers'][0]['merchant'],
