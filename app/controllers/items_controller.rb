@@ -7,19 +7,21 @@ class ItemsController < ApplicationController
   end
 
   def create
+    response =  HTTP.get("https://api.upcitemdb.com/prod/trial/lookup?upc=0885909950805")
+    p response.parse(:json)
     item = Item.new(
       user_id: current_user.id,
-      name: params[:name],
-      picture: params[:picture],
+      name: response.parse(:json)['items'][0]['title'],
+      picture: response.parse(:json)['items'][0]['images'],
       upc: params[:upc],
-      price: params[:price],
-      brand: params[:brand],
-      merchant: params[:merchant]
+      price: response.parse(:json)['items'][0]['offers'][0]['price'],
+      brand: response.parse(:json)['items'][0]['brand'],
+      merchant: response.parse(:json)['items'][0]['offers'][0]['merchant'],
     )
     if item.save
-      render json: { message: "Item created successfully." }, status: :created
+     render json: { message: "Item created successfully." }, status: :created
     else
-      render json: { message: "Item was not created." }, status: :bad_request
+     render json: { message: "Item was not created." }, status: :bad_request
     end
   end
 
@@ -27,5 +29,4 @@ class ItemsController < ApplicationController
     item = Item.find_by(id: params[:id])
     render json: item.as_json
   end
- 
 end
