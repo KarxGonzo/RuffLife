@@ -3,7 +3,7 @@ class FavoriteSnacksController < ApplicationController
 
   def create
     favoritesnack = FavoriteSnack.new(
-      puppy_id: params[:puppy_id],
+      pet_id: params[:pet_id],
       item_id: params[:item_id],
       rating: params[:rating],
     )

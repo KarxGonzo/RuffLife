@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_003213) do
+ActiveRecord::Schema.define(version: 2021_08_15_164925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "favorite_snacks", force: :cascade do |t|
-    t.integer "puppy_id"
+    t.integer "pet_id"
     t.integer "item_id"
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
