@@ -18,7 +18,7 @@ class PetsController < ApplicationController
         picture: params[:picture]
     )
       pet.save
-      render json: { message: "Pet created successfully." }, status: :created
+      render json: pet.as_json, status: :created
     else
       render json: { message: "Pet was not created." }, status: :bad_request
     end
