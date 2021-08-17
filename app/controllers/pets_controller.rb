@@ -2,8 +2,8 @@ class PetsController < ApplicationController
   before_action :authenticate_user, only: [:create, :show, :index, :update]
 
   def index
-    if current_user
-      pet = Pet.all
+    if current_user 
+      pet = current_user.pets
       render json: pet.as_json
     else
       render json: { message: "Please sign-in."}
