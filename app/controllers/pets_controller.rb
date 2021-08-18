@@ -26,7 +26,7 @@ class PetsController < ApplicationController
 
   def show
     pet = Pet.find_by(id: params[:id])
-    render json: pet.as_json
+    render json: pet, include:['favorite_snacks.item']
   end
 
   def update
