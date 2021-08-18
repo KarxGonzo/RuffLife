@@ -42,4 +42,4 @@ gem 'jwt'
 
 gem 'http'
 
-
+gem 'active_model_serializers'
