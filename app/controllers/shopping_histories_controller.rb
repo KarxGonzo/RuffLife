@@ -8,7 +8,7 @@ class ShoppingHistoriesController < ApplicationController
 
   def create
     shoppinghistory = ShoppingHistory.new(
-      user_id: current_user.id,
+      user_id: User.first.id,
       date: params[:date],
       item_id: params[:item_id],
       quantity: params[:quantity]

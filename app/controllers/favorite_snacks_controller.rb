@@ -2,7 +2,7 @@ class FavoriteSnacksController < ApplicationController
   before_action :authenticate_user, only: [:create, :index ]
 
   def index
-    favoritesnack = FavoriteSnack.where(pet_id: 9)
+    favoritesnack = FavoriteSnack.all
     render json: favoritesnack.as_json
   end
 
