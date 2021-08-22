@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user, only: [:create, :show, :index]
 
   def index
-    item = Item.all
+    item = Item.where(user_id: current_user.id)
     render json: item.as_json
   end
 

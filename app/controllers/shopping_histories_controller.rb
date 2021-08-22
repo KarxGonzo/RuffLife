@@ -2,7 +2,7 @@ class ShoppingHistoriesController < ApplicationController
   before_action :authenticate_user, only: [:create, :show, :index]
 
   def index
-    shoppinghistory = ShoppingHistory.all
+    shoppinghistory = ShoppingHistory.where(user_id: current_user.id)
     render json: shoppinghistory.as_json
   end
 
@@ -14,7 +14,7 @@ class ShoppingHistoriesController < ApplicationController
       item_id: params[:item_id],
       quantity: params[:quantity]
     )
-      shoppinghistory.save
+      shoppinghistory.save!
       render json: shoppinghistory.as_json, status: :created
     else
       render json: { message: "Shopping History was not created." }, status: :bad_request
