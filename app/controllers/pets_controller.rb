@@ -4,7 +4,7 @@ class PetsController < ApplicationController
   def index
     if current_user 
       pet = current_user.pets
-      render json: pet.as_json
+      render json: pet, include:['favorite_snacks.item']
     else
       render json: { message: "Please sign-in."}
     end

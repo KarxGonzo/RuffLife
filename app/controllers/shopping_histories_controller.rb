@@ -7,14 +7,15 @@ class ShoppingHistoriesController < ApplicationController
   end
 
   def create
-    shoppinghistory = ShoppingHistory.new(
-      user_id: User.first.id,
+    if current_user
+      shoppinghistory = ShoppingHistory.new(
+      user_id: current_user.id,
       date: params[:date],
       item_id: params[:item_id],
       quantity: params[:quantity]
     )
-    if shoppinghistory.save
-      render json: { message: "Shopping History created successfully." }, status: :created
+      shoppinghistory.save
+      render json: shoppinghistory.as_json, status: :created
     else
       render json: { message: "Shopping History was not created." }, status: :bad_request
     end
