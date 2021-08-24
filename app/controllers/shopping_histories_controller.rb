@@ -3,7 +3,7 @@ class ShoppingHistoriesController < ApplicationController
 
   def index
     shoppinghistory = ShoppingHistory.where(user_id: current_user.id)
-    render json: shoppinghistory.as_json
+    render json: shoppinghistory
   end
 
   def create
